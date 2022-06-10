@@ -4,6 +4,14 @@ import { QueryClient, QueryClientProvider, QueryCache } from "react-query";
 import { ChakraProvider, Box, Heading } from "@chakra-ui/react";
 import { Toaster, toast } from "react-hot-toast";
 import theme from "../theme";
+import { Provider as WagmiProvider } from "wagmi";
+import { providers } from "ethers";
+import Comments from "../components/Comments";
+
+// Provider that will be used when no wallet is connected 
+const polygonTestNetProvider = "https://matic-mumbai.chainstacklabs.com";
+const localTestNetProvider = "http://localhost:8545";
+const provider = providers.getDefaultProvider(polygonTestNetProvider);
 
 // Create a react-query client
 const queryClient = new QueryClient({
@@ -23,14 +31,17 @@ const queryClient = new QueryClient({
 
 const App: NextPage = () => {
   return (
-    <ChakraProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        <Box p={8} maxW="600px" minW="320px" m="0 auto">
-          <Heading>Oops, no comments yet!</Heading>
-          <Toaster position="bottom-right" />
-        </Box>
-      </QueryClientProvider>
-    </ChakraProvider>
+    <WagmiProvider autoConnect provider={provider}>
+      <ChakraProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <Box p={8} maxW="600px" minW="320px" m="0 auto">
+            <Comments topic="my-mint-post" />
+            <Toaster position="bottom-right" />
+          </Box>
+        </QueryClientProvider>
+      </ChakraProvider>
+    </WagmiProvider>
+
   );
 };
 

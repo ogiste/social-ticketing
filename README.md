@@ -8,7 +8,7 @@ Swigg is a platform that facilitates access to experiences and events that provi
 #### Required
 - Users can purchase tickets that are stored and managed on the blockchain - **Required** (14hrs);
 - Users can transfer tickets to other users - **Required** (6hrs)
-- - Users can sign in with social accounts **Required** (2hrs)
+- Users can sign in with social accounts **Required** (2hrs)
 - Users can login - **Required** (4hrs)
 - Users can chat as a crew on the event's forum - **Required** (10hrs)
 - Users can get discounts as certain NFT commnunity holders - **Required** (12hrs)
